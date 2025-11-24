@@ -7,9 +7,11 @@ import LoginForm from "./Auth/LoginForm";
 import RegisterForm from "./Auth/RegisterForm";
 import NavBar from "./NavBar";
 import axios from "axios";
+import { Routes, Route } from "react-router";
+import Layout from "./Layout";
+import Error404 from "./Error404";
 function App() {
   const { book } = useBooks();
-  const [view, setView] = useState("");
   const [user, setUser] = useState({});
 
   const authenticate = async () => {
@@ -38,12 +40,26 @@ function App() {
         Library App
       </h1>
       <h2>Hello {user.username ? user.username : "Guest"}</h2>
-      <NavBar setView={setView} user={user} setUser={setUser} />
-      {view === "allBooks" ? book ? <SingleBook /> : <Books /> : null}
+
+      <Routes>
+        <Route element={<Layout user={user} setUser={setUser} />}>
+          <Route index element={<Books />} />
+          <Route path="books" element={<Books />} />
+          <Route path="books/:id" element={<SingleBook user={user} />} />
+          <Route
+            path="login"
+            element={<LoginForm authenticate={authenticate} />}
+          />
+          <Route path="register" element={<RegisterForm />} />
+          <Route path="*" element={<Error404 />} />
+        </Route>
+      </Routes>
+
+      {/* {view === "allBooks" ? book ? <SingleBook /> : <Books /> : null}
       {view === "login" ? (
         <LoginForm authenticate={authenticate} setView={setView} />
       ) : null}
-      {view === "register" ? <RegisterForm setView={setView} /> : null}
+      {view === "register" ? <RegisterForm setView={setView} /> : null} */}
     </div>
   );
 }

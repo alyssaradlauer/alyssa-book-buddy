@@ -1,23 +1,20 @@
 import { useBooks } from "./Books/BooksContext";
-const NavBar = ({ setView, user }) => {
+import { NavLink, useNavigate } from "react-router";
+const NavBar = ({ user, setUser }) => {
   const { setBook } = useBooks();
-  const forceToBooks = () => {
-    setBook({});
-    setView("allBooks");
-  };
+  const navigate = useNavigate();
+  //   const forceToBooks = () => {
+  //     setBook({});
+  //     setView("allBooks");
+  //   };
   const logout = () => {
     window.localStorage.removeItem("token");
     setUser({});
+    navigate("/");
   };
   return (
     <nav>
-      <a
-        onClick={() => {
-          forceToBooks();
-        }}
-      >
-        All Books
-      </a>
+      <NavLink to="/books">All Books</NavLink>
       {user.id ? (
         <a
           onClick={() => {
@@ -28,20 +25,8 @@ const NavBar = ({ setView, user }) => {
         </a>
       ) : (
         <span>
-          <a
-            onClick={() => {
-              setView("login");
-            }}
-          >
-            Login
-          </a>
-          <a
-            onClick={() => {
-              setView("register");
-            }}
-          >
-            Register
-          </a>
+          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/register">Register</NavLink>
         </span>
       )}
     </nav>

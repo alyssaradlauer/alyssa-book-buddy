@@ -1,5 +1,9 @@
 import axios from "axios";
-const LoginForm = ({ authenticate, setView }) => {
+import { useNavigate } from "react-router";
+
+const LoginForm = ({ authenticate }) => {
+  const navigate = useNavigate();
+
   const login = async (formData) => {
     const username = formData.get("username");
     const password = formData.get("password");
@@ -12,7 +16,7 @@ const LoginForm = ({ authenticate, setView }) => {
       console.log(data);
       window.localStorage.setItem("token", data.token);
       authenticate();
-      setView("allBooks");
+      navigate("/books");
     } catch (error) {
       console.error(error);
     }

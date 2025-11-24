@@ -1,20 +1,15 @@
 import { useBooks } from "./BooksContext";
+import { Link } from "react-router";
+
 const Books = () => {
-  const { book, books, setBook } = useBooks;
-  const viewBook = (book) => {
-    setBook(book);
-  };
+  const { books } = useBooks;
   return (
     <div>
       {books.map((book) => {
         return (
           <div key={book.id}>
-            <h2
-              onClick={() => {
-                viewBook(book);
-              }}
-            >
-              {book.title}
+            <h2>
+              <Link to={`/books/${book.id}`}>{book.title}</Link>
             </h2>
           </div>
         );
