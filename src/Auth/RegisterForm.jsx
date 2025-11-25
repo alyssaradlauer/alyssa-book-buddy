@@ -1,17 +1,26 @@
 import axios from "axios";
+import { useNavigate } from "react-router";
 const RegisterForm = ({ setView }) => {
+  const navigate = useNavigate();
   const register = async (formData) => {
-    const username = formData.get("username");
+    const firstname = formData.get("firstname");
+    const lastname = formData.get("lastname");
+    const email = formData.get("email");
     const password = formData.get("password");
     const user = {
-      username,
+      firstname,
+      lastname,
+      email,
       password,
     };
     try {
-      const { data } = await axios.post("API", user);
+      const { data } = await axios.post(
+        "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/register",
+        user
+      );
       console.log(data);
       alert("Thanks for registering!");
-      setView("allBooks");
+      navigate("/books");
     } catch (error) {
       console.error(error);
     }
@@ -20,8 +29,16 @@ const RegisterForm = ({ setView }) => {
     <form action={register}>
       <h2>Register</h2>
       <label>
-        Username:
-        <input type="text" name="username" />
+        First Name:
+        <input type="text" name="first name" />
+      </label>
+      <label>
+        Last Name:
+        <input type="text" name="last name" />
+      </label>
+      <label>
+        Email:
+        <input type="email" name="email" />
       </label>
       <label>
         Password:

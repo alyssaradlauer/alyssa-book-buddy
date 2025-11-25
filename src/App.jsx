@@ -17,14 +17,17 @@ function App() {
   const authenticate = async () => {
     const token = window.localStorage.getItem("token");
     if (!token) {
-      throw new Error("No token found");
+      return;
     }
     try {
-      const { data } = await axios.get("API", {
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("token")}`,
-        },
-      });
+      const { data } = await axios.get(
+        "https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/users/me",
+        {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`,
+          },
+        }
+      );
       setUser(data);
     } catch (error) {}
   };

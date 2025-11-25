@@ -14,7 +14,9 @@ const SingleBook = () => {
 
   useEffect(() => {
     const fetchSingleBook = async () => {
-      const { data } = await axios.get(`API${id}`);
+      const { data } = await axios.get(
+        `https://fsa-book-buddy-b6e748d1380d.herokuapp.com/api/books/${id}`
+      );
       setBook(data);
     };
     fetchSingleBook();
@@ -30,8 +32,11 @@ const SingleBook = () => {
 
   return (
     <div>
-      {/* <h2>{book.title}</h2> */}
-      //add whatever else information is required per single book
+      <h2>{book.title}</h2>
+      <h4>Author: {book.author}</h4>
+      <h3>ID: {book.id}</h3>
+      <img src={book.coverimage} alt={book.title} />
+      <p>{book.description}</p>
       <div>
         <button
           onClick={() => {
