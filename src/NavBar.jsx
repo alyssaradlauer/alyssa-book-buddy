@@ -16,13 +16,16 @@ const NavBar = ({ user, setUser }) => {
     <nav>
       <NavLink to="/books">All Books</NavLink>
       {user.id ? (
-        <a
-          onClick={() => {
-            logout();
-          }}
-        >
-          Logout
-        </a>
+        <span>
+          <NavLink to="/profile">Profile</NavLink>
+          <a
+            onClick={() => {
+              logout();
+            }}
+          >
+            Logout
+          </a>
+        </span>
       ) : (
         <span>
           <NavLink to="/login">Login</NavLink>

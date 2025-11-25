@@ -10,6 +10,7 @@ import axios from "axios";
 import { Routes, Route } from "react-router";
 import Layout from "./Layout";
 import Error404 from "./Error404";
+import Profile from "./Auth/Profile";
 function App() {
   const { book } = useBooks();
   const [user, setUser] = useState({});
@@ -48,12 +49,19 @@ function App() {
         <Route element={<Layout user={user} setUser={setUser} />}>
           <Route index element={<Books />} />
           <Route path="books" element={<Books />} />
-          <Route path="books/:id" element={<SingleBook user={user} />} />
+          <Route
+            path="books/:id"
+            element={<SingleBook user={user} authenticate={authenticate} />}
+          />
           <Route
             path="login"
             element={<LoginForm authenticate={authenticate} />}
           />
           <Route path="register" element={<RegisterForm />} />
+          <Route
+            path="profile"
+            element={<Profile user={user} authenticate={authenticate} />}
+          />
           <Route path="*" element={<Error404 />} />
         </Route>
       </Routes>
