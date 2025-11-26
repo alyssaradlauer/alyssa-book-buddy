@@ -29,15 +29,15 @@ const LoginForm = ({ authenticate }) => {
     }
   };
   return (
-    <form action={login}>
+    <form action={login} className="authForm">
       <h2>Login</h2>
       <label>
         First Name:
-        <input type="text" name="first name" />
+        <input type="text" name="firstname" />
       </label>
       <label>
         Last Name:
-        <input type="text" name="last name" />
+        <input type="text" name="lastname" />
       </label>
       <label>
         Email:

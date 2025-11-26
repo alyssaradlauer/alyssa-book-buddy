@@ -40,10 +40,6 @@ const SingleBook = ({ user, authenticate }) => {
       );
       console.log("Reservation created:", data);
 
-      if (authenticate) {
-        await authenticate();
-      }
-
       setBook({ ...book, available: false });
 
       alert("Book reserved!");

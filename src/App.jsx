@@ -43,7 +43,7 @@ function App() {
         <img id="logo-image" src="books.png" />
         Library App
       </h1>
-      <h2>Hello {user.username ? user.username : "Guest"}</h2>
+      <h2>Hello {user.firstname ? user.firstname : "Guest"}</h2>
 
       <Routes>
         <Route element={<Layout user={user} setUser={setUser} />}>

@@ -26,15 +26,15 @@ const RegisterForm = ({ setView }) => {
     }
   };
   return (
-    <form action={register}>
+    <form action={register} className="authForm">
       <h2>Register</h2>
       <label>
         First Name:
-        <input type="text" name="first name" />
+        <input type="text" name="firstname" />
       </label>
       <label>
         Last Name:
-        <input type="text" name="last name" />
+        <input type="text" name="lastname" />
       </label>
       <label>
         Email:

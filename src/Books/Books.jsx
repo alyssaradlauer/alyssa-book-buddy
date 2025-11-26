@@ -9,7 +9,9 @@ const Books = ({}) => {
         return (
           <div key={book.id}>
             <h2>
-              <Link to={`/books/${book.id}`}>{book.title}</Link>
+              <Link className="bookLink" to={`/books/${book.id}`}>
+                {book.title}
+              </Link>
             </h2>
           </div>
         );

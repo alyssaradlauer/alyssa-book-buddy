@@ -3,10 +3,7 @@ import { NavLink, useNavigate } from "react-router";
 const NavBar = ({ user, setUser }) => {
   const { setBook } = useBooks();
   const navigate = useNavigate();
-  //   const forceToBooks = () => {
-  //     setBook({});
-  //     setView("allBooks");
-  //   };
+
   const logout = () => {
     window.localStorage.removeItem("token");
     setUser({});
